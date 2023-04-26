@@ -1,4 +1,9 @@
 .Weather {
   border: 1px solid #dadde1;
   border-radius: 8px;
+  background: linear-gradient(
+    -20deg,
+    rgb(233, 222, 250) 0%,
+    rgb(251, 252, 219) 100%
+  );
 }
