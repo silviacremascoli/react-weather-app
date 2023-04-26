@@ -1,8 +1,4 @@
-body {
-  background: linear-gradient(
-    44.8deg,
-    rgba(255, 136, 102, 0.67) -53.1%,
-    rgba(255, 221, 136, 0.28) 49%
-  );
-  background-attachment: fixed;
+.App {
+  max-width: 600px;
+  margin: 30px auto;
 }
