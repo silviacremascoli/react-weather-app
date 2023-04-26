@@ -30,14 +30,14 @@ export default function Weather() {
         <li>Wednesday, 26th April</li>
         <li>Sunny</li>
       </ul>
-      <div className="row">
+      <div className="row mt-2">
         <div className="col-6">
           <div className="d-flex justify-content-start">
             <img
               src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
               alt="Sunny"
             />
-            <span className="temperature">11</span>
+            <span className="temperature">8</span>
             <span className="unit">°C</span>
           </div>
         </div>

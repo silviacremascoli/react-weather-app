@@ -13,7 +13,7 @@
 
 .Weather h1 {
   color: rgb(33, 33, 33);
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 500;
   line-height: 1;
   margin: 20px 0 5px 0;
@@ -41,12 +41,13 @@
 .Weather .temperature {
   font-weight: normal;
   color: rgb(33, 33, 33);
-  font-size: 64px;
+  font-size: 56px;
   line-height: 64px;
+  margin-left: 7px;
 }
 
 .Weather .unit {
-  padding-top: 3px;
+  padding-top: 7px;
   font-weight: light;
-  font-size: 16px;
+  font-size: 14px;
 }
