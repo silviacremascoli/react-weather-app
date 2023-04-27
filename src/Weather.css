@@ -16,7 +16,7 @@
   font-size: 32px;
   font-weight: 500;
   line-height: 1;
-  margin: 20px 0 5px 0;
+  margin: 20px 0 10px 0;
 }
 
 .Weather ul {
@@ -43,7 +43,7 @@
   color: rgb(33, 33, 33);
   font-size: 56px;
   line-height: 64px;
-  margin-left: 7px;
+  margin-left: 5px;
 }
 
 .Weather .unit {
