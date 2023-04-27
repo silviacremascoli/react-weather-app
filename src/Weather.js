@@ -16,7 +16,7 @@ export default function Weather(props) {
       description: response.data.condition.description,
       humidity: response.data.temperature.humidity,
       wind: response.data.wind.speed,
-      icon: `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`,
+      icon: response.data.condition.icon,
       icon_alt: response.data.condition.description,
     });
   }
@@ -36,12 +36,25 @@ export default function Weather(props) {
     setCity(event.target.value);
   }
 
+  function getMyPosition(position) {
+    let latitude = position.coords.latitude;
+    let longitude = position.coords.longitude;
+    let apiKey = "372b3246a78f090c2oeea103eb8344t0";
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${longitude}&lat=${latitude}&key=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(getWeather);
+  }
+
+  function getPosition(event) {
+    event.preventDefault();
+    navigator.geolocation.getCurrentPosition(getMyPosition);
+  }
+
   if (weatherData.ready) {
     return (
       <div className="Weather">
         <form onSubmit={handleSubmit}>
           <div className="row">
-            <div className="col-9">
+            <div className="col-8">
               <input
                 type="search"
                 name="search"
@@ -51,12 +64,20 @@ export default function Weather(props) {
                 onChange={getCity}
               />
             </div>
-            <div className="col-3">
+            <div className="col-2">
               <input
                 type="submit"
                 name="submit"
-                value="Search"
-                className="btn border btn-light w-100"
+                value="🔍"
+                className="btn btn-light w-100 search-button"
+              />
+            </div>
+            <div class="col-2">
+              <input
+                type="button"
+                className="btn btn-light w-100 my-location-button"
+                value="📍"
+                onClick={getPosition}
               />
             </div>
           </div>
