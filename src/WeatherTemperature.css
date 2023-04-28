@@ -1,0 +1,25 @@
+.WeatherTemperature .temperature {
+  font-weight: normal;
+  color: rgb(33, 33, 33);
+  font-size: 56px;
+  line-height: 91px;
+  margin: 10px 0 0 0;
+}
+
+.WeatherTemperature .unit {
+  position: relative;
+  bottom: 27px;
+  font-weight: light;
+  font-size: 15px;
+  color: rgba(32, 33, 36, 0.7);
+  margin-left: 2px;
+}
+
+.WeatherTemperature a {
+  text-decoration: none;
+  color: rgba(32, 33, 36, 0.7);
+}
+
+.WeatherTemperature a:hover {
+  text-decoration: underline;
+}

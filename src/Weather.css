@@ -42,22 +42,7 @@
 }
 
 .Weather img {
+  width: 91px;
+  height: 91px;
   margin-right: 5px;
-  width: 96px;
-  height: 96px;
-}
-
-.Weather .temperature {
-  font-weight: normal;
-  color: rgb(33, 33, 33);
-  font-size: 64px;
-  line-height: 94px;
-  margin-left: 8px;
-}
-
-.Weather .unit {
-  padding-top: 20px;
-  font-weight: light;
-  font-size: 14px;
-  color: rgba(32, 33, 36, 0.7);
 }
