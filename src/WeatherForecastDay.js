@@ -1,0 +1,25 @@
+import React from "react";
+import WeatherIcon from "./WeatherIcon";
+import "./WeatherForecast.css";
+import moment from "moment";
+
+export default function WeatherForecastDay(props) {
+  function day() {
+    const date = props.data.time * 1000;
+    return moment(date).format(`ddd`);
+  }
+  return (
+    <div className="WeatherForecast">
+      <div className="WeatherForecast-day">{day()}</div>
+      <WeatherIcon code={props.data.condition.icon} />
+      <div className="WeatherForecast-temperature">
+        <span className="WeatherForecast-max-temp">
+          {Math.round(props.data.temperature.maximum)}°
+        </span>
+        <span className="WeatherForecast-min-temp">
+          {Math.round(props.data.temperature.minimum)}°
+        </span>
+      </div>
+    </div>
+  );
+}

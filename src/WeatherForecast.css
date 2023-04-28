@@ -1,0 +1,15 @@
+.WeatherForecast {
+  text-align: center;
+  font-size: 14px;
+  color: rgba(32, 33, 36, 0.7);
+}
+
+.WeatherForecast-min-temp {
+  opacity: 0.6;
+  margin-left: 4px;
+}
+
+.WeatherForecast img {
+  width: 48px;
+  height: 48px;
+}

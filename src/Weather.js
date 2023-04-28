@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import WeatherInfo from "./WeatherInfo";
+import WeatherForecast from "./WeatherForecast";
 import "./Weather.css";
 import axios from "axios";
 
@@ -18,6 +19,7 @@ export default function Weather(props) {
       wind: response.data.wind.speed,
       icon: response.data.condition.icon,
       icon_alt: response.data.condition.description,
+      coordinates: response.data.coordinates,
     });
   }
 
@@ -72,7 +74,7 @@ export default function Weather(props) {
                 className="btn btn-light w-100 search-button"
               />
             </div>
-            <div class="col-2">
+            <div className="col-2">
               <input
                 type="button"
                 className="btn btn-light w-100 my-location-button"
@@ -83,6 +85,7 @@ export default function Weather(props) {
           </div>
         </form>
         <WeatherInfo info={weatherData} />
+        <WeatherForecast coordinates={weatherData.coordinates} />
       </div>
     );
   } else {
