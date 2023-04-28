@@ -1,7 +1,7 @@
 import React from "react";
-import FormattedDate from "./FormattedDate";
 import WeatherIcon from "./WeatherIcon";
 import WeatherTemperature from "./WeatherTemperature";
+import CurrentTime from "./CurrentTime";
 
 export default function WeatherInfo(props) {
   return (
@@ -10,8 +10,11 @@ export default function WeatherInfo(props) {
         <div className="col-6">
           <h1>{props.info.city}</h1>
           <ul>
+            {/* <li>
+              Current time: <FormattedDate date={props.info.date} />
+            </li> */}
             <li>
-              <FormattedDate date={props.info.date} />
+              Local time: <CurrentTime coordinates={props.info.coordinates} />
             </li>
             <li>Humidity: {props.info.humidity}%</li>
             <li>Wind speed: {Math.round(props.info.wind)} km/h</li>
