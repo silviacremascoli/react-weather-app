@@ -17,7 +17,7 @@ export default function WeatherInfo(props) {
             <li>Wind speed: {Math.round(props.info.wind)} km/h</li>
           </ul>
         </div>
-        <div className="col-6 mt-1">
+        <div className="col-6 mt-2">
           <div className="row">
             <div className="d-flex justify-content-end">
               <WeatherIcon code={props.info.icon} alt={props.info.icon_url} />

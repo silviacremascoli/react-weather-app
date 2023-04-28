@@ -21,11 +21,11 @@
 .Weather h1 {
   color: rgb(32, 33, 36);
   display: block;
-  font-size: 40px;
+  font-size: 38px;
   font-weight: 100;
   line-height: 32px;
   text-align: left;
-  margin: 20px 0 10px 0;
+  margin: 20px 0 15px 0;
 }
 
 .Weather ul {
