@@ -85,9 +85,3 @@
     font-size: 10px;
   }
 }
-
-@media (max-width: 992px) {
-  .Weather {
-    width: 800px;
-  }
-}
