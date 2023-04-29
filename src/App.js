@@ -7,11 +7,11 @@ export default function App() {
   function backgroundColor() {
     let time = new Date().getHours();
     if (time > 6 && time < 20) {
-      document.body.classList.add("night");
-      document.body.classList.remove("day");
-    } else {
       document.body.classList.add("day");
       document.body.classList.remove("night");
+    } else {
+      document.body.classList.add("night");
+      document.body.classList.remove("day");
     }
   }
   return (
@@ -19,7 +19,7 @@ export default function App() {
     (
       <div className="App">
         <div className="container">
-          <Weather defaultCity="Tokyo" />
+          <Weather defaultCity="Milan" />
           <Footer />
         </div>
       </div>

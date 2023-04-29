@@ -10,8 +10,13 @@
 .night {
   background: linear-gradient(
     171.8deg,
-    rgb(5, 111, 146) 3.5%,
+    rgb(5, 111, 146) 13.5%,
     rgb(6, 57, 84) 78.6%
   );
   background-attachment: fixed;
+}
+
+.night .Footer,
+.night .Footer a {
+  color: white;
 }
