@@ -25,7 +25,7 @@
   font-weight: 100;
   line-height: 1;
   text-align: left;
-  margin: 20px 0 15px 0;
+  margin: 20px 0 12px 0;
 }
 
 .Weather ul {
@@ -45,4 +45,43 @@
   width: 91px;
   height: 91px;
   margin-right: 5px;
+}
+
+.WeatherInfo .CurrentTemperature {
+  margin-top: 10px;
+}
+
+.WeatherInfo .CurrentTemperature .d-flex {
+  justify-content: end;
+}
+
+@media (max-width: 576px) {
+  form .col-2 {
+    padding-left: 1px;
+  }
+
+  .WeatherInfo {
+    text-align: center;
+  }
+
+  .Weather h1 {
+    text-align: center;
+  }
+
+  .WeatherInfo .CurrentTemperature {
+    margin: 0 auto;
+  }
+
+  .WeatherInfo .CurrentTemperature .d-flex {
+    justify-content: center;
+  }
+
+  .WeatherInfo .Description {
+    border-bottom: 1px solid rgba(32, 33, 36, 0.5);
+    padding-bottom: 20px;
+  }
+
+  footer {
+    font-size: 10px;
+  }
 }

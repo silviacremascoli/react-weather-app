@@ -13,3 +13,9 @@
   width: 56px;
   height: 56px;
 }
+
+@media (max-width: 992px) {
+  .WeatherForecast {
+    margin-top: 10px;
+  }
+}

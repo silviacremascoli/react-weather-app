@@ -1,8 +1,17 @@
-body {
+.day {
+  background: radial-gradient(
+    circle at 10% 20%,
+    rgb(253, 239, 132) 0%,
+    rgb(247, 198, 169) 54.2%,
+    rgb(21, 186, 196) 100.3%
+  );
+  background-attachment: fixed;
+}
+.night {
   background: linear-gradient(
-    44.8deg,
-    rgba(255, 136, 102, 0.67) -53.1%,
-    rgba(255, 221, 136, 0.28) 49%
+    171.8deg,
+    rgb(5, 111, 146) 3.5%,
+    rgb(6, 57, 84) 78.6%
   );
   background-attachment: fixed;
 }
