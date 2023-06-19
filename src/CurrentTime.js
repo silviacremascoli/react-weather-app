@@ -9,10 +9,10 @@ export default function CurrentTime(props) {
     setReady(false);
   }, [props.coordinates]);
 
-  function handleResponse(response) {
+  const handleResponse = (response) => {
     setReady(true);
     setTime(response.data.datetime);
-  }
+  };
 
   if (ready) {
     let date = new Date(time);

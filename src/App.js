@@ -4,7 +4,7 @@ import Weather from "./Weather";
 import Footer from "./Footer";
 
 export default function App() {
-  function backgroundColor() {
+  const backgroundColor = () => {
     let time = new Date().getHours();
     if (time > 6 && time < 20) {
       document.body.classList.add("day");
@@ -13,7 +13,7 @@ export default function App() {
       document.body.classList.add("night");
       document.body.classList.remove("day");
     }
-  }
+  };
   return (
     backgroundColor(),
     (

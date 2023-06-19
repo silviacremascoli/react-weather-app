@@ -8,7 +8,7 @@ export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity);
   const [weatherData, setWeatherData] = useState({ ready: false });
 
-  function getWeather(response) {
+  const getWeather = (response) => {
     setWeatherData({
       ready: true,
       city: response.data.city,
@@ -21,35 +21,35 @@ export default function Weather(props) {
       icon_alt: response.data.condition.description,
       coordinates: response.data.coordinates,
     });
-  }
+  };
 
-  function search() {
+  const search = () => {
     const apiKey = "372b3246a78f090c2oeea103eb8344t0";
     let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
     axios.get(apiUrl).then(getWeather);
-  }
+  };
 
-  function handleSubmit(event) {
+  const handleSubmit = (event) => {
     event.preventDefault();
     search();
-  }
+  };
 
-  function getCity(event) {
+  const getCity = (event) => {
     setCity(event.target.value);
-  }
+  };
 
-  function getMyPosition(position) {
+  const getMyPosition = (position) => {
     let latitude = position.coords.latitude;
     let longitude = position.coords.longitude;
     let apiKey = "372b3246a78f090c2oeea103eb8344t0";
     let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${longitude}&lat=${latitude}&key=${apiKey}&units=metric`;
     axios.get(apiUrl).then(getWeather);
-  }
+  };
 
-  function getPosition(event) {
+  const getPosition = (event) => {
     event.preventDefault();
     navigator.geolocation.getCurrentPosition(getMyPosition);
-  }
+  };
 
   if (weatherData.ready) {
     return (

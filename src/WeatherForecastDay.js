@@ -4,10 +4,10 @@ import "./WeatherForecast.css";
 import moment from "moment";
 
 export default function WeatherForecastDay(props) {
-  function day() {
+  const day = () => {
     const date = props.data.time * 1000;
     return moment(date).format(`ddd`);
-  }
+  };
   return (
     <div className="WeatherForecast">
       <div className="WeatherForecast-day">{day()}</div>

@@ -11,10 +11,10 @@ export default function WeatherForecast(props) {
     setLoaded(false);
   }, [props.coordinates]);
 
-  function handleResponse(response) {
+  const handleResponse = (response) => {
     setLoaded(true);
     setForecast(response.data.daily);
-  }
+  };
 
   if (loaded) {
     return (
