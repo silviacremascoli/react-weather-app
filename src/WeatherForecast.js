@@ -33,15 +33,18 @@ export default function WeatherForecast(props) {
       </div>
     );
   } else {
-    // function that uses the coordinates contained in the props from Weather.js to make an API call and render the component with its response
+    // function that uses the coordinates contained in the props from Weather.js to make an API call and render the component with its response; once there's a response, the function also changes the loaded statement to true
     let longitude = props.coordinates.longitude;
     let latitude = props.coordinates.latitude;
     let apiKey = "372b3246a78f090c2oeea103eb8344t0";
     let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${longitude}&lat=${latitude}&key=${apiKey}&units=metric`;
-    axios.get(apiUrl).then((response) => {
-      setLoaded(true);
-      setForecast(response.data.daily);
-    });
+    axios
+      .get(apiUrl)
+      .then((response) => {
+        setLoaded(true);
+        setForecast(response.data.daily);
+      })
+      .catch((error) => console.log(error.toJSON()));
     return <div className="WeatherForecast">Loading forecast...</div>;
   }
 }

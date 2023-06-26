@@ -30,7 +30,10 @@ export default function Weather(props) {
   const search = () => {
     const apiKey = "372b3246a78f090c2oeea103eb8344t0";
     let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(getWeather);
+    axios
+      .get(apiUrl)
+      .then(getWeather)
+      .catch((error) => console.log(error.toJSON()));
   };
 
   // function that receives the submit event and calls the search function
@@ -50,7 +53,10 @@ export default function Weather(props) {
     let longitude = position.coords.longitude;
     let apiKey = "372b3246a78f090c2oeea103eb8344t0";
     let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${longitude}&lat=${latitude}&key=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(getWeather);
+    axios
+      .get(apiUrl)
+      .then(getWeather)
+      .catch((error) => console.log(error.toJSON()));
   };
 
   // function that uses the browser's Geolocation API to locate the current position
