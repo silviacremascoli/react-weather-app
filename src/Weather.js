@@ -5,9 +5,12 @@ import "./Weather.css";
 import axios from "axios";
 
 export default function Weather(props) {
+  // statement that handles the city value, initially set on the props received by App.js
   const [city, setCity] = useState(props.defaultCity);
+  // statement that handles the weather data response, initially set on not ready
   const [weatherData, setWeatherData] = useState({ ready: false });
 
+  // function that receives the response of the API call and uses its values to change the statements of weatherData accordingly, while setting ready on true
   const getWeather = (response) => {
     setWeatherData({
       ready: true,
@@ -23,21 +26,25 @@ export default function Weather(props) {
     });
   };
 
-  const search = () => {
+  // function that receives the city's value and uses it make an API call
+  const search = (city) => {
     const apiKey = "372b3246a78f090c2oeea103eb8344t0";
     let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
     axios.get(apiUrl).then(getWeather);
   };
 
+  // function that receives the submit event and calls the search function
   const handleSubmit = (event) => {
     event.preventDefault();
-    search();
+    search(city);
   };
 
+  // function that changes the city statement according to the value submitted in the search box
   const getCity = (event) => {
     setCity(event.target.value);
   };
 
+  // function that receives the current position and uses its coordinates' values to make an API call
   const getMyPosition = (position) => {
     let latitude = position.coords.latitude;
     let longitude = position.coords.longitude;
@@ -46,6 +53,7 @@ export default function Weather(props) {
     axios.get(apiUrl).then(getWeather);
   };
 
+  // function that uses the browser's Geolocation API to locate the current position
   const getPosition = (event) => {
     event.preventDefault();
     navigator.geolocation.getCurrentPosition(getMyPosition);

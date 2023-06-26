@@ -4,6 +4,7 @@ import Weather from "./Weather";
 import Footer from "./Footer";
 
 export default function App() {
+  // function that changes the background color between light and dark according to the current time
   const backgroundColor = () => {
     let time = new Date().getHours();
     if (time > 6 && time < 20) {
