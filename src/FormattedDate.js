@@ -1,8 +1,10 @@
 import React from "react";
+import moment from "moment";
 
 export default function FormattedDate(props) {
   const date = props.date;
-  let weekDay = [
+  const formattedDate = moment(date).format("dddd, hh:mm A");
+  /* let weekDay = [
     "Sunday",
     "Monday",
     "Tuesday",
@@ -17,6 +19,6 @@ export default function FormattedDate(props) {
   let newformat = hours >= 12 ? "PM" : "AM";
   hours = hours % 12;
   hours = hours ? hours : 12;
-  minutes = minutes < 10 ? "0" + minutes : minutes;
-  return `${day}, ${hours}:${minutes} ${newformat}`;
+  minutes = minutes < 10 ? "0" + minutes : minutes; */
+  return formattedDate;
 }

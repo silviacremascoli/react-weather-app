@@ -4,6 +4,7 @@ import "./WeatherForecast.css";
 import moment from "moment";
 
 export default function WeatherForecastDay(props) {
+  // function that uses Moment.js to format the date response received through the props
   const day = () => {
     const date = props.data.time * 1000;
     return moment(date).format(`ddd`);

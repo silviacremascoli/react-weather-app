@@ -4,9 +4,12 @@ import "./WeatherForecast.css";
 import axios from "axios";
 
 export default function WeatherForecast(props) {
+  // statements that handles whether the component has a return value, initially set on false
   const [loaded, setLoaded] = useState(false);
+  // statement that handles the forecast response, initially set on null
   const [forecast, setForecast] = useState(null);
 
+  // Effect Hook that changes the loaded statement back to false after rendering the component, which allows for further API calls
   useEffect(() => {
     setLoaded(false);
   }, [props.coordinates]);
@@ -30,6 +33,7 @@ export default function WeatherForecast(props) {
       </div>
     );
   } else {
+    // function that uses the coordinates contained in the props from Weather.js to make an API call and render the component with its response
     let longitude = props.coordinates.longitude;
     let latitude = props.coordinates.latitude;
     let apiKey = "372b3246a78f090c2oeea103eb8344t0";

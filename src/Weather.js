@@ -27,7 +27,7 @@ export default function Weather(props) {
   };
 
   // function that receives the city's value and uses it make an API call
-  const search = (city) => {
+  const search = () => {
     const apiKey = "372b3246a78f090c2oeea103eb8344t0";
     let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
     axios.get(apiUrl).then(getWeather);
@@ -36,7 +36,7 @@ export default function Weather(props) {
   // function that receives the submit event and calls the search function
   const handleSubmit = (event) => {
     event.preventDefault();
-    search(city);
+    search();
   };
 
   // function that changes the city statement according to the value submitted in the search box
