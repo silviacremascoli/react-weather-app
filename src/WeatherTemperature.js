@@ -19,11 +19,11 @@ export default function WeatherTemperature(props) {
         <span className="temperature">{Math.round(props.celsius)}</span>
         <span className="unit" role="group" aria-label="Temperature units">
           <button type="button" aria-pressed="true" onClick={showCelsius}>
-            °C
+            °<span className="unit-letter">C</span>
           </button>
           {" | "}
           <button type="button" aria-pressed="false" onClick={showFahrenheit}>
-            °F
+            °<span className="unit-letter">F</span>
           </button>
         </span>
       </div>
@@ -36,11 +36,11 @@ export default function WeatherTemperature(props) {
         </span>
         <span className="unit" role="group" aria-label="Temperature units">
           <button type="button" aria-pressed="false" onClick={showCelsius}>
-            °C
+            °<span className="unit-letter">C</span>
           </button>
           {" | "}
           <button type="button" aria-pressed="true" onClick={showFahrenheit}>
-            °F
+            °<span className="unit-letter">F</span>
           </button>
         </span>
       </div>
