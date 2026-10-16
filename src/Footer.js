@@ -7,7 +7,7 @@ export default function Footer() {
       <footer>
         <p>
           This project was coded by{" "}
-          <a href="https://responsive-portfolio-cremascoli.netlify.app/">
+          <a href="https://www.silviacremascoli.com" target="_blank" rel="noreferrer">
             Silvia Cremascoli
           </a>{" "}
           and is open-sourced on{" "}
