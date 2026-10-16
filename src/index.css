@@ -5,6 +5,11 @@
   --weather-muted-color: #4b5055;
   --weather-icon-shadow: drop-shadow(0 0 1.5px rgba(20, 70, 83, 0.45))
     drop-shadow(0 2px 2px rgba(20, 70, 83, 0.16));
+  --font-weight-thin: 100;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
 }
 
 .day,
