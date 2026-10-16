@@ -7,22 +7,29 @@ export default function WeatherForecastDay(props) {
   // function that uses Moment.js to format the date response received through the props
   const day = () => {
     const date = props.data.time * 1000;
-    return moment(date).format(`ddd`);
+    return moment(date).format("dddd");
   };
+  const maximum = Math.round(props.data.temperature.maximum);
+  const minimum = Math.round(props.data.temperature.minimum);
   return (
-    <div className="WeatherForecast">
-      <div className="WeatherForecast-day">{day()}</div>
+    <article
+      className="WeatherForecast-day-item"
+      aria-label={`${day()}: ${props.data.condition.description}, high ${maximum} degrees, low ${minimum} degrees Celsius`}
+    >
+      <h3 className="WeatherForecast-day">{moment(props.data.time * 1000).format("ddd")}</h3>
       <div className="WeatherForecast-icon">
-        <WeatherIcon code={props.data.condition.icon} />
+        <WeatherIcon code={props.data.condition.icon} alt="" />
       </div>
       <div className="WeatherForecast-temperature">
         <span className="WeatherForecast-max-temp">
-          {Math.round(props.data.temperature.maximum)}°
+          <span className="visually-hidden">High: </span>
+          {maximum}°
         </span>
         <span className="WeatherForecast-min-temp">
-          {Math.round(props.data.temperature.minimum)}°
+          <span className="visually-hidden">Low: </span>
+          {minimum}°
         </span>
       </div>
-    </div>
+    </article>
   );
 }
