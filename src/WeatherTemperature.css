@@ -1,5 +1,5 @@
 .WeatherTemperature .temperature {
-  font-weight: normal;
+  font-weight: var(--font-weight-regular);
   color: rgb(33, 33, 33);
   font-size: 56px;
   line-height: 91px;
@@ -9,17 +9,38 @@
 .WeatherTemperature .unit {
   position: relative;
   bottom: 28px;
-  font-weight: light;
+  font-weight: var(--font-weight-thin);
   font-size: 15px;
-  color: rgba(32, 33, 36, 0.7);
+  color: var(--weather-muted-color);
   margin-left: 2px;
 }
 
-.WeatherTemperature a {
+.WeatherTemperature button {
+  border: 0;
+  padding: 0 2px;
+  border-radius: 0.2rem;
+  background: transparent;
   text-decoration: none;
-  color: rgba(32, 33, 36, 0.7);
+  color: var(--weather-muted-color);
+  font: inherit;
+  cursor: pointer;
 }
 
-.WeatherTemperature a:hover {
-  font-weight: bold;
+.WeatherTemperature button:hover {
+  font-weight: var(--font-weight-bold);
+}
+
+.WeatherTemperature button[aria-pressed="true"] {
+  font-weight: var(--font-weight-bold);
+}
+
+.WeatherTemperature button[aria-pressed="true"] .unit-letter {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.WeatherTemperature button:focus-visible {
+  outline: none;
+  border-radius: 0.2rem;
+  box-shadow: var(--focus-ring-shadow);
 }
