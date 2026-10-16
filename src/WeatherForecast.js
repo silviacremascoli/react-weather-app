@@ -4,47 +4,75 @@ import "./WeatherForecast.css";
 import axios from "axios";
 
 export default function WeatherForecast(props) {
-  // statements that handles whether the component has a return value, initially set on false
-  const [loaded, setLoaded] = useState(false);
-  // statement that handles the forecast response, initially set on null
+  const [loading, setLoading] = useState(true);
   const [forecast, setForecast] = useState(null);
+  const [error, setError] = useState("");
+  const { longitude, latitude } = props.coordinates;
 
-  // Effect Hook that changes the loaded statement back to false after rendering the component, which allows for further API calls
   useEffect(() => {
-    setLoaded(false);
-  }, [props.coordinates]);
+    let active = true;
+    const apiKey = "372b3246a78f090c2oeea103eb8344t0";
+    const apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${longitude}&lat=${latitude}&key=${apiKey}&units=metric`;
+    setLoading(true);
+    setError("");
 
-  if (loaded) {
-    return (
-      <div className="WeatherForecast">
-        <div className="row">
-          {forecast.map(function (dailyForecast, index) {
-            if (index < 5) {
-              return (
-                <div className="col" key={index}>
-                  <WeatherForecastDay data={dailyForecast} />
-                </div>
-              );
-            } else {
-              return null;
-            }
-          })}
-        </div>
-      </div>
-    );
-  } else {
-    // function that uses the coordinates contained in the props from Weather.js to make an API call and render the component with its response; once there's a response, the function also changes the loaded statement to true
-    let longitude = props.coordinates.longitude;
-    let latitude = props.coordinates.latitude;
-    let apiKey = "372b3246a78f090c2oeea103eb8344t0";
-    let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${longitude}&lat=${latitude}&key=${apiKey}&units=metric`;
     axios
       .get(apiUrl)
       .then((response) => {
-        setLoaded(true);
-        setForecast(response.data.daily);
+        if (active) {
+          setForecast(response.data.daily);
+          setLoading(false);
+        }
       })
-      .catch((error) => console.log(error.toJSON()));
-    return <div className="WeatherForecast">Loading forecast...</div>;
+      .catch(() => {
+        if (active) {
+          setError("The forecast couldn't be loaded.");
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [latitude, longitude]);
+
+  if (loading) {
+    return (
+      <>
+        <p
+          className="visually-hidden"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          Loading forecast...
+        </p>
+      </>
+    );
   }
+
+  if (error) {
+    return (
+      <>
+        <p className="visually-hidden" role="alert">
+          {error}
+        </p>
+      </>
+    );
+  }
+
+  return (
+    <section className="WeatherForecast" aria-labelledby="forecast-heading">
+      <h2 id="forecast-heading" className="visually-hidden">
+        Five-day forecast
+      </h2>
+      <ul className="row WeatherForecast-list">
+        {forecast.slice(0, 5).map((dailyForecast) => (
+          <li className="col" key={dailyForecast.time}>
+            <WeatherForecastDay data={dailyForecast} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
 }
