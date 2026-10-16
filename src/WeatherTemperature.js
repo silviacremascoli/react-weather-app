@@ -17,11 +17,14 @@ export default function WeatherTemperature(props) {
     return (
       <div className="WeatherTemperature">
         <span className="temperature">{Math.round(props.celsius)}</span>
-        <span className="unit">
-          °C |{" "}
-          <a href="/" onClick={showFahrenheit}>
+        <span className="unit" role="group" aria-label="Temperature units">
+          <button type="button" aria-pressed="true" onClick={showCelsius}>
+            °C
+          </button>
+          {" | "}
+          <button type="button" aria-pressed="false" onClick={showFahrenheit}>
             °F
-          </a>
+          </button>
         </span>
       </div>
     );
@@ -31,11 +34,14 @@ export default function WeatherTemperature(props) {
         <span className="temperature">
           {Math.round(props.celsius * 1.8 + 32)}
         </span>
-        <span className="unit">
-          <a href="/" onClick={showCelsius}>
+        <span className="unit" role="group" aria-label="Temperature units">
+          <button type="button" aria-pressed="false" onClick={showCelsius}>
             °C
-          </a>{" "}
-          | °F
+          </button>
+          {" | "}
+          <button type="button" aria-pressed="true" onClick={showFahrenheit}>
+            °F
+          </button>
         </span>
       </div>
     );
