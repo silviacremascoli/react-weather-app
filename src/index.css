@@ -1,4 +1,26 @@
+:root {
+  --focus-ring-color: #ba7154;
+  --focus-ring-gap: #fff;
+  --control-interaction-bg: #fff1e6;
+  --weather-muted-color: #4b5055;
+  --weather-icon-shadow: drop-shadow(0 0 1.5px rgba(20, 70, 83, 0.45))
+    drop-shadow(0 2px 2px rgba(20, 70, 83, 0.16));
+}
+
+.day,
+.night {
+  --focus-ring-color-light: color-mix(
+    in srgb,
+    var(--focus-ring-color) 75%,
+    white
+  );
+  --focus-ring-shadow: 0 0 0 1px var(--focus-ring-gap),
+    0 0 0 3px var(--focus-ring-color-light);
+}
+
 .day {
+  --focus-ring-color: #ba7154;
+  --control-interaction-bg: #fff1e6;
   background: radial-gradient(
     circle at 10% 20%,
     rgb(253, 239, 132) 0%,
@@ -8,6 +30,8 @@
   background-attachment: fixed;
 }
 .night {
+  --focus-ring-color: #56899d;
+  --control-interaction-bg: #e3f1f7;
   background: linear-gradient(
     171.8deg,
     rgb(5, 111, 146) 13.5%,
