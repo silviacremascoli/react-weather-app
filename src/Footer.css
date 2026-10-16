@@ -1,5 +1,7 @@
 .Footer a {
-  text-decoration: none;
+  display: inline-block;
+  border-radius: 0.2rem;
+  text-decoration: underline;
   color: black;
   transition: all 200ms ease-in-out;
 }
@@ -8,8 +10,13 @@
   text-decoration: underline;
 }
 
+.Footer a:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring-shadow);
+}
+
 .Footer {
-  opacity: 0.6;
+  color: #202124;
   text-align: center;
   margin-top: 10px;
   font-size: 13px;
