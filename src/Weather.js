@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import WeatherInfo from "./WeatherInfo";
 import WeatherForecast from "./WeatherForecast";
 import "./Weather.css";
@@ -7,6 +7,7 @@ import axios from "axios";
 const apiKey = "372b3246a78f090c2oeea103eb8344t0";
 const savedCityKey = "react-weather-app:last-city";
 
+// function that retrieves the saved city from local storage or returns the default city if not available
 function getSavedCity(defaultCity) {
   try {
     return window.localStorage.getItem(savedCityKey) || defaultCity;
@@ -15,11 +16,12 @@ function getSavedCity(defaultCity) {
   }
 }
 
+// function that saves the city to local storage
 function saveCity(city) {
   try {
     window.localStorage.setItem(savedCityKey, city);
   } catch {
-    // Keep weather search usable when browser storage is unavailable.
+    // keep weather search usable when browser storage is unavailable
   }
 }
 
@@ -33,6 +35,36 @@ function getWeatherByCity(city) {
 function getWeatherByCoordinates(latitude, longitude) {
   const apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${longitude}&lat=${latitude}&key=${apiKey}&units=metric`;
   return axios.get(apiUrl);
+}
+
+// function that applies the weather response to the state setters and updates the weather data accordingly
+function applyWeatherResponse(response, setters) {
+  const { setCity, setWeatherData, setLoading, setError, setAnnouncement } = setters;
+  
+  setCity(response.data.city);
+  saveCity(response.data.city);
+  setWeatherData({
+    ready: true,
+    city: response.data.city,
+    date: new Date(response.data.time * 1000),
+    temperature: response.data.temperature.current,
+    description: response.data.condition.description,
+    humidity: response.data.temperature.humidity,
+    wind: response.data.wind.speed,
+    icon: response.data.condition.icon,
+    icon_alt: response.data.condition.description,
+    coordinates: response.data.coordinates,
+  });
+  setLoading(false);
+  setError("");
+  setAnnouncement(`Weather for ${response.data.city} updated.`);
+}
+
+// function that applies the weather error to the state setters
+function applyWeatherError({ setLoading, setError, setAnnouncement }) {
+  setLoading(false);
+  setError("We couldn't load the weather. Check the location and try again.");
+  setAnnouncement("");
 }
 
 export default function Weather(props) {
@@ -50,40 +82,36 @@ export default function Weather(props) {
   // statement that handles the announcement message for screen readers
   const [announcement, setAnnouncement] = useState("Loading weather...");
 
-  // function that receives the response of the API call and uses its values to change the statements of weatherData accordingly, while setting ready on true
-  const getWeather = useCallback((response) => {
-    setCity(response.data.city);
-    saveCity(response.data.city);
-    setWeatherData({
-      ready: true,
-      city: response.data.city,
-      date: new Date(response.data.time * 1000),
-      temperature: response.data.temperature.current,
-      description: response.data.condition.description,
-      humidity: response.data.temperature.humidity,
-      wind: response.data.wind.speed,
-      icon: response.data.condition.icon,
-      icon_alt: response.data.condition.description,
-      coordinates: response.data.coordinates,
-    });
-    setLoading(false);
-    setError("");
-    setAnnouncement(`Weather for ${response.data.city} updated.`);
-  }, []);
+  // function that applies the weather response to the state setters when the API call succeeds
+  const getWeather = (response) => applyWeatherResponse(response, {
+    setCity,
+    setWeatherData,
+    setLoading,
+    setError,
+    setAnnouncement,
+  });
 
   // function that handles the error state when the API call fails
-  const handleWeatherError = useCallback(() => {
-    setLoading(false);
-    setError("We couldn't load the weather. Check the location and try again.");
-    setAnnouncement("");
-  }, []);
+  const handleWeatherError = () => { applyWeatherError({ setLoading, setError, setAnnouncement }); };
 
   // useEffect hook that makes an initial API call to get the weather for the default city
   useEffect(() => {
+    let ignore = false;
+    const setters = { setCity, setWeatherData, setLoading, setError, setAnnouncement };
+
     getWeatherByCity(initialCity)
-      .then(getWeather)
-      .catch(handleWeatherError);
-  }, [initialCity, getWeather, handleWeatherError]);
+      .then((response) => {
+        if (!ignore) applyWeatherResponse(response, setters);
+      })
+      .catch(() => {
+        if (!ignore) applyWeatherError(setters);
+      });
+
+    return () => {
+      // set ignore to true to prevent state updates after the component is unmounted
+      ignore = true;
+    };
+  }, [initialCity]);
 
   // function that receives the city's value and uses it to make an API call
   const search = (searchCity = city) => {
